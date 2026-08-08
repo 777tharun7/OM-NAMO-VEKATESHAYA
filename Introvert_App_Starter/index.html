@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Introvert | State Growth Hub</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar">
+        <div class="brand">Project Introvert</div>
+        <div class="nav-links">
+          <a href="#communities">Communities</a>
+          <a href="#profileSection">Profile</a>
+          <a href="#campaigns">Campaigns</a>
+          <a href="#events">Events</a>
+        </div>
+      </nav>
+
+      <div class="hero-content">
+        <div>
+          <p class="eyebrow">State-level launch hub</p>
+          <h1 id="stateTitle">Karnataka Growth Hub</h1>
+          <p class="hero-text" id="stateIntro">
+            A state-first community platform for awareness, collaboration, and local progress.
+          </p>
+          <div class="hero-actions">
+            <button id="exploreBtn">Explore State Communities</button>
+            <button id="createBtn" class="secondary">Create a State Campaign</button>
+          </div>
+          <div class="state-selector">
+            <label for="stateSelect">Choose state</label>
+            <select id="stateSelect">
+              <option value="ap">Andhra Pradesh</option>
+              <option value="tg">Telangana</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>State focus</h3>
+          <p id="focusTag">Clean City + Education Growth</p>
+          <ul>
+            <li>Community-led awareness</li>
+            <li>Local events and volunteering</li>
+            <li>State-level collaboration</li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div id="authModal" class="modal hidden">
+      <div class="modal-card">
+        <div class="wizard-steps">
+          <span id="stepBadge">Login</span>
+        </div>
+        <h3 id="authTitle">Login</h3>
+        <form id="authForm">
+          <div class="wizard-step" id="authStep1">
+            <input id="authName" type="text" placeholder="Full name" />
+            <input id="authEmail" type="email" placeholder="Email" required />
+            <input id="authPassword" type="password" placeholder="Password" required />
+            <select id="authRole">
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+              <option value="it_employee">IT Employee</option>
+              <option value="police">Police Officer</option>
+              <option value="govt_employee">Government Employee</option>
+              <option value="lawyer">Lawyer</option>
+              <option value="doctor">Doctor</option>
+              <option value="media">PR / News / Creator</option>
+            </select>
+            <label for="communityDomainSelect">Choose your main domain</label>
+            <select id="communityDomainSelect" required>
+              <option value="">Select a main domain</option>
+              <option value="Technology & IT">Technology & IT</option>
+              <option value="Students & Education">Students & Education</option>
+              <option value="Agriculture">Agriculture</option>
+              <option value="Jobs & Careers">Jobs & Careers</option>
+              <option value="Business">Business</option>
+              <option value="Startups">Startups</option>
+              <option value="Finance">Finance</option>
+              <option value="Health">Health</option>
+              <option value="Fitness">Fitness</option>
+              <option value="Gaming">Gaming</option>
+              <option value="Arts & Design">Arts & Design</option>
+              <option value="Music">Music</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Sports">Sports</option>
+              <option value="Travel">Travel</option>
+              <option value="Food">Food</option>
+              <option value="Real Estate">Real Estate</option>
+              <option value="Pets">Pets</option>
+              <option value="Environment">Environment</option>
+              <option value="NGOs & Social Impact">NGOs & Social Impact</option>
+              <option value="Family & Parenting">Family & Parenting</option>
+              <option value="Relationships">Relationships</option>
+              <option value="Spirituality">Spirituality</option>
+              <option value="Automobiles">Automobiles</option>
+              <option value="Local Communities">Local Communities</option>
+            </select>
+            <input id="subdomainInput" type="text" placeholder="Subdomain interest (for example AI, Agriculture, Jobs, Health)" />
+          </div>
+
+          <div class="wizard-step hidden" id="authStep2">
+            <input id="authMobile" type="tel" placeholder="Mobile number" />
+            <button type="button" id="verifyEmailBtn" class="secondary-btn">Verify Email</button>
+            <input id="authOtp" type="text" placeholder="Enter OTP" />
+            <button type="button" id="verifyMobileBtn" class="secondary-btn">Verify Mobile</button>
+          </div>
+
+          <div class="wizard-step hidden" id="authStep3">
+            <div class="form-grid">
+              <select id="professionSelect">
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="doctor">Doctor</option>
+                <option value="lawyer">Lawyer</option>
+                <option value="police">Police</option>
+                <option value="govt_employee">Government Employee</option>
+                <option value="media">Media / Creator</option>
+              </select>
+              <select id="branchSelect">
+                <option value="cse">CSE</option>
+                <option value="ece">ECE</option>
+                <option value="eee">EEE</option>
+                <option value="civil">Civil</option>
+                <option value="mechanical">Mechanical</option>
+                <option value="law">Law</option>
+                <option value="medical">Medical</option>
+                <option value="general">General / Other</option>
+              </select>
+              <select id="domainSelect">
+                <option value="">Preferred community domain</option>
+                <option value="Technology & IT">Technology & IT</option>
+                <option value="Students & Education">Students & Education</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Jobs & Careers">Jobs & Careers</option>
+                <option value="Business">Business</option>
+                <option value="Startups">Startups</option>
+                <option value="Finance">Finance</option>
+                <option value="Health">Health</option>
+                <option value="Fitness">Fitness</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Arts & Design">Arts & Design</option>
+                <option value="Music">Music</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Sports">Sports</option>
+                <option value="Travel">Travel</option>
+                <option value="Food">Food</option>
+                <option value="Real Estate">Real Estate</option>
+                <option value="Pets">Pets</option>
+                <option value="Environment">Environment</option>
+                <option value="NGOs & Social Impact">NGOs & Social Impact</option>
+                <option value="Family & Parenting">Family & Parenting</option>
+                <option value="Relationships">Relationships</option>
+                <option value="Spirituality">Spirituality</option>
+                <option value="Automobiles">Automobiles</option>
+                <option value="Local Communities">Local Communities</option>
+              </select>
+              <input id="rollNoInput" type="text" placeholder="Roll number / Employee ID" />
+              <input id="specialtyInput" type="text" placeholder="Specialty or branch detail" />
+              <input id="verificationIdInput" type="text" placeholder="Verification ID / Role ID" />
+            </div>
+          </div>
+
+          <div class="wizard-step hidden" id="authStep4">
+            <input id="addressInput" type="text" placeholder="Address" />
+            <div class="form-grid">
+              <input id="cityInput" type="text" placeholder="City" />
+              <input id="stateInput" type="text" placeholder="State" />
+            </div>
+            <input id="authDocInput" type="file" accept=".pdf,.jpg,.jpeg,.png" />
+            <textarea id="profileNote" rows="3" placeholder="Add a short note about your role, proof, and community interest"></textarea>
+          </div>
+
+          <div class="wizard-actions">
+            <button type="button" id="prevStepBtn" class="secondary-btn hidden">Back</button>
+            <button type="button" id="nextStepBtn">Next</button>
+          </div>
+        </form>
+        <p id="authSwitchText" class="helper-text">New here? <button id="toggleAuthMode" class="link-btn">Create account</button></p>
+        <button id="closeModal" class="link-btn">Cancel</button>
+      </div>
+    </div>
+
+    <main>
+      <section class="auth-panel">
+        <div class="auth-card">
+          <h2>Join the state network</h2>
+          <p>Start with ready-made communities built for education, technology, public service, media, and local action.</p>
+          <div class="auth-actions">
+            <button id="loginBtn">Login</button>
+            <button id="signupBtn" class="secondary">Sign Up</button>
+          </div>
+        </div>
+
+        <div class="auth-card">
+          <h3>Community categories ready for you</h3>
+          <ul class="feature-list">
+            <li>Students and teachers</li>
+            <li>IT employees and tech professionals</li>
+            <li>Police, lawyers, collectors, and government servants</li>
+            <li>PR, news reporters, TV channels, and creators</li>
+            <li>Nearby-area local communities</li>
+          </ul>
+        </div>
+
+        <div class="auth-card">
+          <h3>API access</h3>
+          <p>Connect the app to a backend endpoint using a demo API key.</p>
+          <input id="apiKeyInput" type="password" placeholder="API key" />
+          <button id="saveApiKeyBtn" class="secondary">Save key</button>
+          <p id="apiStatusText" class="helper-text">Waiting for backend connection…</p>
+        </div>
+      </section>
+
+      <section class="section" id="profileSection">
+        <div class="section-heading">
+          <h2>My profile</h2>
+          <p>Your verified identity, recommended communities, and premium access.</p>
+        </div>
+        <div class="profile-card" id="profileSummary"></div>
+      </section>
+
+      <section class="section" id="communityHubSection" style="display: none;">
+        <div class="section-heading">
+          <h2>Your verified community hub</h2>
+          <p>Communities arranged around your branch, profession, location, and verification details.</p>
+        </div>
+        <div id="communityHubList" class="card-grid"></div>
+      </section>
+
+      <section class="stats" id="impact">
+        <div class="stat-card">
+          <h3 id="communityCount">0</h3>
+          <p>Active communities</p>
+        </div>
+        <div class="stat-card">
+          <h3 id="eventCount">0</h3>
+          <p>Events this week</p>
+        </div>
+        <div class="stat-card">
+          <h3 id="actionCount">0</h3>
+          <p>Local actions planned</p>
+        </div>
+      </section>
+
+      <section class="section" id="analyticsSection">
+        <div class="section-heading">
+          <h2>Your community progress</h2>
+          <p>A simple view of your requests, community activity, and premium access.</p>
+        </div>
+        <div class="stats">
+          <div class="stat-card">
+            <h3 id="verifiedCount">0</h3>
+            <p>Verified requests</p>
+          </div>
+          <div class="stat-card">
+            <h3 id="pendingCount">0</h3>
+            <p>Pending checks</p>
+          </div>
+          <div class="stat-card">
+            <h3 id="premiumCount">0</h3>
+            <p>Premium access</p>
+          </div>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Your recent requests</h3>
+            <ul id="reviewQueue"></ul>
+          </article>
+          <article class="card">
+            <h3>Community updates</h3>
+            <ul id="activityFeed"></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="communityDetailSection" style="display: none;">
+        <div class="auth-card">
+          <h3 id="detailTitle">Community overview</h3>
+          <p id="detailDescription"></p>
+          <ul id="detailHighlights"></ul>
+          <button id="detailJoinBtn" class="join-btn">Join This Community</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <h2>Platform ecosystem map</h2>
+          <p>Every community is linked through a main domain, subdomain, category, and channel structure.</p>
+        </div>
+        <div id="domainExplorerList" class="domain-grid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <h2>Core platform modules</h2>
+          <p>The ecosystem combines identity, networking, communication, learning, marketplace, events, AI, trust, and administration.</p>
+        </div>
+        <div id="platformModulesList" class="module-grid"></div>
+      </section>
+
+      <section class="section" id="communities">
+        <div class="section-heading">
+          <h2 id="communityHeading">Communities in Karnataka</h2>
+          <p id="stateTagline">Local networks for progress and collaboration.</p>
+        </div>
+        <div id="communityList" class="card-grid"></div>
+      </section>
+      <section class="section" id="verificationSection" style="display: none;">
+        <div class="auth-card">
+          <h3 id="verificationTitle">Community verification</h3>
+          <p id="verificationText">Please upload proof for your role before joining this community.</p>
+          <form id="verificationForm">
+            <label for="roleSelect">Select your role</label>
+            <select id="roleSelect">
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+              <option value="it_employee">IT Employee</option>
+              <option value="police">Police Officer</option>
+              <option value="govt_employee">Government Employee</option>
+              <option value="lawyer">Lawyer</option>
+              <option value="media">PR / News / Creator</option>
+            </select>
+            <label for="proofInput">Upload proof document</label>
+            <input type="file" id="proofInput" accept=".pdf,.jpg,.jpeg,.png" />
+            <textarea id="proofNote" rows="3" placeholder="Add a short note about your role and proof"></textarea>
+            <button type="submit">Submit Verification</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <h2>Verified member dashboard</h2>
+          <p>Membership status after verification review.</p>
+        </div>
+        <div id="dashboardList" class="card-grid"></div>
+      </section>
+
+      <section class="section" id="premiumWorkspaceSection" style="display: none;">
+        <div class="section-heading">
+          <h2>Premium workspace</h2>
+          <p>Your verified collaboration rooms, private updates, and project channels.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Private project room</h3>
+            <p>Share updates, planning files, and verified professional notes for your state campaign.</p>
+          </article>
+          <article class="card">
+            <h3>Verified professional channel</h3>
+            <p>Connect with lawyers, doctors, teachers, and civic leaders in a trusted premium circle.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <h2>Premium subscriptions</h2>
+          <p>Unlock private project rooms and professional collaboration tools.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <span class="tag">Starter</span>
+            <h3>Community Access</h3>
+            <p>Free access to public communities, events, and state-wide updates.</p>
+            <p><strong>₹0 / month</strong></p>
+          </article>
+          <article class="card">
+            <span class="tag">Premium</span>
+            <h3>Private Project Rooms</h3>
+            <p>Join paid private chat rooms for designers, event managers, tech teams, and project collaborators.</p>
+            <p><strong>₹499 / month</strong></p>
+            <button class="join-btn" id="premiumBtn">Upgrade to Premium</button>
+          </article>
+          <article class="card">
+            <span class="tag">Pro</span>
+            <h3>Professional Network</h3>
+            <p>Get priority access to verified professionals, exclusive campaigns, and expert rooms.</p>
+            <p><strong>₹999 / month</strong></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <h2>Premium chat rooms</h2>
+          <p>Private rooms for focused collaboration.</p>
+        </div>
+        <div class="chat-room-card">
+          <div class="chat-room-list">
+            <div class="chat-room-item active">Design Collaboration Room</div>
+            <div class="chat-room-item">Event Managers Hub</div>
+            <div class="chat-room-item">Tech Project Circle</div>
+          </div>
+          <div class="chat-room-messages">
+            <div class="message incoming">Hello! We are planning a city awareness event this weekend.</div>
+            <div class="message outgoing">Great. I can help with content and volunteer coordination.</div>
+            <div class="message incoming">Perfect. Premium members can share files and plan faster.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <h2>Upgrade to premium</h2>
+          <p>Bring premium collaboration to your city and state growth journey.</p>
+        </div>
+        <div class="checkout-card">
+          <h3>Premium Plan</h3>
+          <p>₹499 / month</p>
+          <ul>
+            <li>Private project rooms</li>
+            <li>Verified professional access</li>
+            <li>Exclusive campaigns and state-level events</li>
+          </ul>
+          <button class="join-btn" id="checkoutBtn">Pay Now</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <h2>Why this app can grow</h2>
+          <p>A platform that starts with communities and grows into a nationwide movement.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3>State-first growth</h3>
+            <p>Build trust in one state before expanding to others.</p>
+          </article>
+          <article class="card">
+            <h3>Professional value</h3>
+            <p>Offer premium rooms for real collaboration and business use.</p>
+          </article>
+          <article class="card">
+            <h3>National impact</h3>
+            <p>Create one connected ecosystem for awareness, civic action, and development.</p>
+          </article>
+        </div>
+      </section>
+      <section class="section" id="campaigns">
+        <div class="section-heading">
+          <h2>State campaigns</h2>
+          <p>Focused programs that can grow into national awareness movements.</p>
+        </div>
+        <div id="campaignList" class="card-grid"></div>
+      </section>
+
+      <section class="section" id="events">
+        <div class="section-heading">
+          <h2>Upcoming state events</h2>
+          <p>Join local drives, community meetups, and learning circles.</p>
+        </div>
+        <div id="eventList" class="card-grid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <h2>Why this grows well</h2>
+          <p>Built to expand from one state into a national movement.</p>
+        </div>
+        <div id="storyList" class="story-grid"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

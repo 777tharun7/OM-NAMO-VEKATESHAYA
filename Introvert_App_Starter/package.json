@@ -1,0 +1,9 @@
+{
+  "name": "introvert-app-starter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Starter app for the Project Introvert MVP",
+  "scripts": {
+    "start": "python3 server.py"
+  }
+}

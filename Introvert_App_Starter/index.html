@@ -3,469 +3,826 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Introvert | State Growth Hub</title>
+    <title>Project Introvert | Bharat Unified Community Ecosystem</title>
+    <meta name="description" content="India's national community super-app connecting IT employees, students, teachers, lawyers, police, builders, creators, and citizens across Nation, State, and Local levels." />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="hero">
-      <nav class="topbar">
-        <div class="brand">Project Introvert</div>
-        <div class="nav-links">
-          <a href="#communities">Communities</a>
-          <a href="#profileSection">Profile</a>
-          <a href="#campaigns">Campaigns</a>
-          <a href="#events">Events</a>
-        </div>
-      </nav>
+    <div class="app-layout">
+      <!-- Topbar Header -->
+      <header class="topbar-wrapper">
+        <div class="topbar-content">
+          <!-- Left: Brand Logo & Title -->
+          <div class="brand-section" id="brandHomeBtn">
+            <div class="brand-flag-badge">🇮🇳</div>
+            <div class="brand-text-block">
+              <span class="brand-title">Bharat Connect</span>
+              <span class="brand-subtitle">Project Introvert Ecosystem</span>
+            </div>
+          </div>
 
-      <div class="hero-content">
-        <div>
-          <p class="eyebrow">State-level launch hub</p>
-          <h1 id="stateTitle">Karnataka Growth Hub</h1>
-          <p class="hero-text" id="stateIntro">
-            A state-first community platform for awareness, collaboration, and local progress.
+          <!-- Public vs Verified Dashboard Mode Toggle -->
+          <div class="level-switcher-bar" id="viewModeSwitcher">
+            <button class="level-btn active" id="publicViewBtn">
+              <span>👁️</span> Public Visitor View
+            </button>
+            <button class="level-btn" id="verifiedDashboardBtn">
+              <span>👤</span> My Verified Profession Hub
+            </button>
+          </div>
+
+          <!-- 3-Tier Geographic Level Switcher -->
+          <div class="level-switcher-bar" id="levelSwitcher">
+            <button class="level-btn" data-level="nation" id="levelNationBtn">
+              <span>🇮🇳</span> Nation Level
+            </button>
+            <button class="level-btn active" data-level="state" id="levelStateBtn">
+              <span>🏛️</span> State Level
+            </button>
+            <button class="level-btn" data-level="local" id="levelLocalBtn">
+              <span>📍</span> Nearby Area
+            </button>
+          </div>
+
+          <!-- State Selector Strip -->
+          <div class="geo-filter-strip">
+            <select id="stateSelect" class="geo-select" title="Select State / UT">
+              <option value="all_india">🇮🇳 All-India National</option>
+              <option value="tg" selected>Telangana (TG)</option>
+              <option value="ap">Andhra Pradesh (AP)</option>
+              <option value="ka">Karnataka (KA)</option>
+              <option value="mh">Maharashtra (MH)</option>
+              <option value="tn">Tamil Nadu (TN)</option>
+              <option value="dl">Delhi NCR (DL)</option>
+            </select>
+          </div>
+
+          <!-- Topbar Actions: ALWAYS VISIBLE LOGIN & SIGNUP BUTTONS -->
+          <div class="topbar-actions">
+            <button id="themeToggleBtn" class="icon-btn" title="Toggle Theme">🌓</button>
+            <button id="openAiAssistantBtn" class="icon-btn" title="Bharat AI Assistant">✨</button>
+            
+            <div class="user-profile-badge" id="userProfileBtn" style="display: flex;">
+              <div class="user-avatar" id="userAvatarChar">A</div>
+              <div class="user-meta-top">
+                <span class="user-name-top" id="topbarUserName">Aditi Sharma</span>
+                <span class="user-role-top" id="topbarUserRole">Student Innovator</span>
+              </div>
+            </div>
+
+            <!-- Login & Sign Up / Verification Buttons Always Accessible -->
+            <button id="loginModalBtn" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 6px;">
+              <span>🔑</span> Login / Verify ID
+            </button>
+            <button id="signupModalBtn" class="btn-primary" style="display: inline-flex; align-items: center; gap: 6px;">
+              <span>🛡️</span> Verify & Join
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Persona Quick-Switcher Bar -->
+      <section class="persona-bar-wrapper">
+        <div class="persona-bar-content">
+          <div class="persona-label">
+            <span>⚡ Test Persona & Profession Quick-Switch:</span>
+          </div>
+          <div class="persona-chips-container" id="personaChips">
+            <button class="persona-chip active" data-persona="student">🎓 Student (Aditi - TG)</button>
+            <button class="persona-chip" data-persona="tech">💻 Cyber Lead (Rahul - KA)</button>
+            <button class="persona-chip" data-persona="police">🛡️ Police SP (Vikram - AP)</button>
+            <button class="persona-chip" data-persona="lawyer">⚖️ Advocate (Meera - KA)</button>
+            <button class="persona-chip" data-persona="builder">🏗️ Architect (Arjun - DL)</button>
+            <button class="persona-chip" data-persona="media">📢 Media/PR (Rohan - MH)</button>
+            <button class="persona-chip" data-persona="gamer">🎮 Gamer (Karan - IN)</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PUBLIC VISITOR HOME VIEW (When Not Logged In / Exploring) -->
+      <div id="publicLandingView">
+        <!-- Hero Section: What Project Introvert Does For Life in India -->
+        <section class="hero-hub-section">
+          <div class="hero-glass-card">
+            <div>
+              <div class="hero-eyebrow-strip">
+                <div class="badge-live-pulse">
+                  <span class="pulse-dot"></span>
+                  <span>Public National Discovery Portal</span>
+                </div>
+                <span style="color: var(--saffron); font-size: 0.8rem; font-weight: 700;">Transforming Life in India • Proximity into Opportunity</span>
+              </div>
+              <h1 class="hero-main-title">
+                Unifying India’s <span class="highlight">Professions & Communities</span>
+              </h1>
+              <p class="hero-tagline-text">
+                Today, professionals, students, lawyers, police, builders, creators, and citizens operate in isolated silos. Project Introvert connects who is around you with what you can build together—accelerating national progress, civic cleanliness, and career growth.
+              </p>
+              <div class="hero-cta-group">
+                <button class="btn-primary" id="publicVerifyBtn">Verify Your ID & Enter Custom Hub →</button>
+                <button class="btn-secondary" id="publicExploreTaxonomyBtn">Explore 25 Domains & 8 Pillars</button>
+                <button class="btn-secondary" id="publicAskAiBtn">Ask Bharat AI</button>
+              </div>
+            </div>
+
+            <div class="hero-stats-panel">
+              <div class="hero-stat-card">
+                <div class="stat-number saffron">28</div>
+                <div class="stat-label">States & UT Hubs</div>
+              </div>
+              <div class="hero-stat-card">
+                <div class="stat-number emerald">1.25M</div>
+                <div class="stat-label">Connected Members</div>
+              </div>
+              <div class="hero-stat-card">
+                <div class="stat-number cyan">25</div>
+                <div class="stat-label">Main Community Domains</div>
+              </div>
+              <div class="hero-stat-card">
+                <div class="stat-number purple">85.4k</div>
+                <div class="stat-label">Civic & Tech Actions</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- "What This Platform Does For Life in India" Impact Grid -->
+        <section class="pillars-strip-section">
+          <div class="section-title-wrap">
+            <div>
+              <h2 class="section-heading-main">🇮🇳 What Project Introvert Does For Life in India</h2>
+              <p class="section-subtext">How cross-sector community connection solves key national challenges</p>
+            </div>
+          </div>
+
+          <div class="pillars-scroll-grid">
+            <div class="pillar-card">
+              <div class="pillar-icon-box">🎓</div>
+              <h3 class="pillar-name">Students & Teachers</h3>
+              <p class="pillar-desc">Connects students with professors & alumni to upgrade curriculum, solve municipal problems, and secure tier-1 placements.</p>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon-box">💻</div>
+              <h3 class="pillar-name">IT & Cyber Professionals</h3>
+              <p class="pillar-desc">Unifies software engineers into sovereign tech guilds—building open security tools for MSMEs and advancing India’s AI independence.</p>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon-box">⚖️</div>
+              <h3 class="pillar-name">Lawyers & Fast-Track Courts</h3>
+              <p class="pillar-desc">Enables High Court advocates and law graduates to index fast-track court judgments and run free citizen legal aid clinics.</p>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon-box">🛡️</div>
+              <h3 class="pillar-name">Police & Civil Officers</h3>
+              <p class="pillar-desc">Inter-departmental advisory channel for rapid 1930 Helpline cyber fraud freezes, traffic safety, and neighborhood policing.</p>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon-box">📢</div>
+              <h3 class="pillar-name">Media & Swachh Bharat</h3>
+              <p class="pillar-desc">Mobilizes journalists, creators, and youth for weekly clean city drives, beach sanitation, and verified progress reporting.</p>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon-box">🏗️</div>
+              <h3 class="pillar-name">Builders & Architecture</h3>
+              <p class="pillar-desc">Elevates Indian urban housing to European standards with modular zero-carbon architecture and modern interior craftsmanship.</p>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon-box">🇮🇳</div>
+              <h3 class="pillar-name">Grassroots Citizen Voice</h3>
+              <p class="pillar-desc">Direct platform for 1.4 Billion citizens to submit ward improvement ideas, vote on policy proposals, and drive local action.</p>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon-box">🎮</div>
+              <h3 class="pillar-name">Gaming & Esports Arena</h3>
+              <p class="pillar-desc">Supports mobile gamers, indie Indian game studios, and collegiate esports leagues across 28 states.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Eligibility & Verification Explainer Banner -->
+        <section class="pillars-strip-section">
+          <div class="post-composer-card" style="background: linear-gradient(135deg, rgba(255, 153, 51, 0.08), rgba(16, 185, 129, 0.08)); border-color: var(--saffron);">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+              <div>
+                <div style="font-size: 0.8rem; color: var(--saffron); font-weight: 700; text-transform: uppercase;">🛡️ Trusted Verification Protocol</div>
+                <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin: 4px 0;">Verify Your ID to Unlock Your Custom Profession Hub</h3>
+                <p style="font-size: 0.88rem; color: var(--text-secondary); max-width: 720px;">
+                  To ensure a high-trust, spam-free environment, Project Introvert requires users to verify their role (Student Roll No, Bar Council Reg No, Police Badge, COA Arch License, or Employee ID). Once verified, your home feed shows <strong>ONLY your profession and nearby activities</strong>.
+                </p>
+              </div>
+              <button class="btn-primary" id="bannerVerifyBtn">Start Verification Now →</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- VERIFIED USER LOGGED-IN DASHBOARD VIEW (Customized Home Feed) -->
+      <div id="verifiedDashboardView" style="display: none;">
+        <!-- Tailored User Banner -->
+        <section class="hero-hub-section" style="padding-bottom: 0;">
+          <div class="post-composer-card" style="background: linear-gradient(135deg, rgba(24, 32, 51, 0.95), rgba(17, 23, 38, 0.95)); border-color: var(--saffron);">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <div class="post-avatar" style="width: 52px; height: 52px; font-size: 1.3rem;" id="dashAvatar">AS</div>
+                <div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <h2 style="font-family: var(--font-display); font-size: 1.25rem;" id="dashUserName">Aditi Sharma</h2>
+                    <span class="badge-live-pulse" style="font-size: 0.68rem; padding: 2px 8px;" id="dashBadge">✓ Verified Student Innovator</span>
+                  </div>
+                  <div style="font-size: 0.85rem; color: var(--text-secondary);" id="dashUserTitle">JNTU Hyderabad • Telangana Hub</div>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);" id="dashUserGeo">📍 Nearby Radar: Kukatpally & HITEC City, Hyderabad</div>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="text-align: right;">
+                  <div style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; color: var(--saffron);" id="dashXp">300 XP</div>
+                  <div style="font-size: 0.72rem; color: var(--emerald); font-weight: 700;">Trust Score: 98/100</div>
+                </div>
+                <button class="btn-primary" id="openCreateProjectModalBtn" style="font-size: 0.8rem;">+ Submit Research / Project Idea</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Navigation Tabs for Logged-In Dashboard -->
+        <nav class="nav-tabs-wrapper">
+          <div class="main-tab-bar" id="mainTabBar">
+            <button class="tab-btn active" data-tab="feedTab">
+              <span>🌐</span> My Profession & Local Feed
+            </button>
+            <button class="tab-btn" data-tab="projectsTab">
+              <span>🤝</span> Research & Project Collaboration
+              <span class="tab-badge" id="projectCountBadge">5 Open</span>
+            </button>
+            <button class="tab-btn" data-tab="workspaceTab">
+              <span>💬</span> Profession Live Chat Room
+              <span class="tab-badge">Verified</span>
+            </button>
+            <button class="tab-btn" data-tab="radarTab">
+              <span>📍</span> Nearby Activity Radar & Meetings
+            </button>
+            <button class="tab-btn" data-tab="membersTab">
+              <span>🧑‍🤝‍🧑</span> Verified Peers Directory
+            </button>
+            <button class="tab-btn" data-tab="communitiesTab">
+              <span>🏛️</span> Explore All 25 Domains
+            </button>
+            <button class="tab-btn" data-tab="profileTab">
+              <span>👤</span> My Profile & ID Status
+            </button>
+          </div>
+        </nav>
+
+        <!-- Main Application Views Container -->
+        <main class="app-main-content">
+          <!-- VIEW 1: MY PROFESSION & LOCAL FEED -->
+          <div class="tab-view-content" id="feedTab">
+            <div class="feed-layout-grid">
+              <div>
+                <!-- Post Composer -->
+                <div class="post-composer-card">
+                  <div class="composer-header">
+                    <div class="post-avatar" id="composerAvatar">A</div>
+                    <div style="flex: 1;">
+                      <div style="font-weight: 700; font-size: 0.9rem;" id="composerName">Aditi Sharma</div>
+                      <div style="font-size: 0.75rem; color: var(--emerald);" id="composerRole">Student Innovator • Telangana Hub</div>
+                    </div>
+                  </div>
+                  <input type="text" id="postTitleInput" class="form-control" placeholder="Share a project request, research work, or local area update..." style="margin-bottom: 8px;" />
+                  <textarea id="postContentInput" class="composer-input" placeholder="Post for your verified profession and nearby peers..."></textarea>
+                  
+                  <div class="composer-footer">
+                    <div class="composer-tags">
+                      <select id="postScopeSelect" class="tag-select">
+                        <option value="state">🏛️ State Level</option>
+                        <option value="nation">🇮🇳 Nation Level</option>
+                        <option value="local">📍 Nearby Local Area</option>
+                      </select>
+                      <select id="postPillarSelect" class="tag-select">
+                        <option value="education">🎓 Students & Teachers</option>
+                        <option value="tech">💻 Software & Cyber</option>
+                        <option value="legal">⚖️ Legal & Fast-Track</option>
+                        <option value="police">🛡️ Police & Govt</option>
+                        <option value="media">📢 Media & Swachh Bharat</option>
+                        <option value="builders">🏗️ Builders & Architecture</option>
+                        <option value="citizen">🇮🇳 Citizen Voice</option>
+                        <option value="gaming">🎮 Gaming & Esports</option>
+                      </select>
+                    </div>
+                    <button id="submitPostBtn" class="btn-primary">Publish Update</button>
+                  </div>
+                </div>
+
+                <!-- Role Filter Indicator -->
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; font-size: 0.82rem; color: var(--text-secondary);">
+                  <span>Showing updates relevant to <strong id="filterRoleText" style="color: var(--saffron);">Students & Tech</strong> in <strong id="filterStateText" style="color: var(--emerald);">Telangana</strong></span>
+                  <button class="btn-secondary" id="clearRoleFilterBtn" style="padding: 2px 8px; font-size: 0.72rem;">Show All Professions</button>
+                </div>
+
+                <!-- Live Posts Stream -->
+                <div id="postsStream"></div>
+              </div>
+
+              <!-- Feed Right Rail (Research Highlights & Nearby Radar Preview) -->
+              <div>
+                <div class="post-composer-card" style="margin-bottom: 16px;">
+                  <h3 style="font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                    <span>🤝</span> Open Research Requests
+                  </h3>
+                  <div id="sideProjectsList"></div>
+                </div>
+
+                <div class="post-composer-card">
+                  <h3 style="font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                    <span>🎙️</span> Verified Profession Audio Stage
+                  </h3>
+                  <div class="voice-room-card">
+                    <div class="voice-room-header">
+                      <div>
+                        <div style="font-weight: 700; font-size: 0.88rem;" id="voiceStageTitle">Telangana Student Innovation Stage</div>
+                        <div style="font-size: 0.72rem; color: var(--emerald);">● 42 Peers Active • 4 Speaking</div>
+                      </div>
+                      <button class="btn-primary" style="padding: 4px 10px; font-size: 0.75rem;" id="joinLiveAudioBtn">Join Audio</button>
+                    </div>
+                    <div class="voice-avatar-grid">
+                      <div class="voice-avatar-item speaking" title="Aditi (Speaking)">AS</div>
+                      <div class="voice-avatar-item" title="Prof. Reddy">PR</div>
+                      <div class="voice-avatar-item speaking" title="SP Vikram">VR</div>
+                      <div class="voice-avatar-item" title="Rahul">RV</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEW 2: RESEARCH & PROJECT COLLABORATION BOARD -->
+          <div class="tab-view-content" id="projectsTab" style="display: none;">
+            <div class="section-title-wrap">
+              <div>
+                <h2 class="section-heading-main">🤝 Project & Research Collaboration Hub</h2>
+                <p class="section-subtext">Post research requests, share your work, and request to join peer innovation teams across India</p>
+              </div>
+              <button class="btn-primary" id="createProjectBoardBtn">+ Create Research Request</button>
+            </div>
+
+            <div class="domain-grid-container" id="projectsGrid">
+              <!-- Projects populated via JS -->
+            </div>
+          </div>
+
+          <!-- VIEW 3: DISCORD / SLACK STYLE CHANNELS WORKSPACE -->
+          <div class="tab-view-content" id="workspaceTab" style="display: none;">
+            <div class="workspace-container">
+              <!-- Left Sidebar: Channels -->
+              <div class="workspace-sidebar-left">
+                <div class="community-header-sidebar">
+                  <div class="post-avatar" style="width: 34px; height: 34px; font-size: 0.8rem;" id="activeWorkspaceAvatar">TG</div>
+                  <div>
+                    <div style="font-weight: 700; font-size: 0.9rem;" id="activeWorkspaceTitle">Telangana Student Network</div>
+                    <div style="font-size: 0.7rem; color: var(--emerald);">● Verified Profession Hub</div>
+                  </div>
+                </div>
+
+                <div class="channel-category-label">Collaboration Channels</div>
+                <div class="channel-list" id="channelList">
+                  <div class="channel-item active" data-channel="general"># general-chat</div>
+                  <div class="channel-item" data-channel="state-issue-apps"># state-issue-apps</div>
+                  <div class="channel-item" data-channel="aiml-specialization"># aiml-specialization</div>
+                  <div class="channel-item" data-channel="syllabus-upgrades"># syllabus-upgrades</div>
+                  <div class="channel-item" data-channel="hackathons-placements"># hackathons-placements</div>
+                  <div class="channel-item" data-channel="voice-stage">🎙️ voice-stage-live</div>
+                </div>
+
+                <div class="channel-category-label">Switch Profession Channel</div>
+                <select id="workspaceCommunitySwitcher" class="geo-select" style="width: 100%;"></select>
+              </div>
+
+              <!-- Middle: Live Chat -->
+              <div class="workspace-chat-main">
+                <div class="chat-header-bar">
+                  <div class="chat-channel-title">
+                    <span id="activeChannelName"># general-chat</span>
+                  </div>
+                  <div style="font-size: 0.8rem; color: var(--text-secondary);" id="activeChannelTopic">
+                    Verified peer discussions & research coordination
+                  </div>
+                </div>
+
+                <div class="chat-stream-box" id="chatStream"></div>
+
+                <div class="chat-composer-box">
+                  <input type="text" id="workspaceChatInput" class="chat-text-input" placeholder="Message verified peers..." />
+                  <button id="sendWorkspaceMsgBtn" class="btn-primary" style="padding: 9px 18px;">Send</button>
+                </div>
+              </div>
+
+              <!-- Right Sidebar: Active Members & Voice Stage -->
+              <div class="workspace-sidebar-right">
+                <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.08em;">
+                  Verified Peers Online (6)
+                </div>
+                <div id="roomMembersList" style="display: flex; flex-direction: column; gap: 8px;">
+                  <div style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem;">
+                    <div class="pulse-dot"></div>
+                    <strong id="sidebarUserName">Aditi Sharma</strong> <span style="font-size: 0.7rem; color: var(--saffron);">(You)</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem;">
+                    <div class="pulse-dot"></div>
+                    <span>Prof. K. Reddy (Mentor)</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem;">
+                    <div class="pulse-dot"></div>
+                    <span>SP Vikram IPS</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem;">
+                    <div class="pulse-dot"></div>
+                    <span>Rahul Varma (Lead Dev)</span>
+                  </div>
+                </div>
+
+                <div class="voice-room-card" style="margin-top: auto;">
+                  <div style="font-weight: 700; font-size: 0.82rem; margin-bottom: 6px;">🎙️ Voice Channel</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px;">Connected to #voice-stage-live</div>
+                  <button class="btn-secondary" style="width: 100%; font-size: 0.78rem;" id="toggleMuteBtn">🎤 Mute Mic</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEW 4: NEARBY ACTIVITY RADAR & MEETINGS -->
+          <div class="tab-view-content" id="radarTab" style="display: none;">
+            <div class="swachh-mission-grid">
+              <div>
+                <div class="post-composer-card">
+                  <div class="section-title-wrap">
+                    <div>
+                      <h2 class="section-heading-main">📍 Nearby Activity Radar & Local Meetings</h2>
+                      <p class="section-subtext">Technical roundtables, ward clean drives, and research meetups around your location</p>
+                    </div>
+                  </div>
+
+                  <div id="nearbyRadarList"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="post-composer-card">
+                  <h3 style="font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 12px;">
+                    🏆 State Cleanliness & Impact Rank
+                  </h3>
+                  <div style="display: flex; flex-direction: column; gap: 12px;" id="stateCleanlinessRanks"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEW 5: 25 DOMAINS TAXONOMY EXPLORER -->
+          <div class="tab-view-content" id="communitiesTab" style="display: none;">
+            <div class="section-title-wrap">
+              <div>
+                <h2 class="section-heading-main">🏛️ 25 Main Domains & State Communities</h2>
+                <p class="section-subtext">Comprehensive taxonomy connecting over 10,000+ categories and local chapters</p>
+              </div>
+              <input type="text" id="communitySearchInput" class="form-control" placeholder="Search communities, topics, or cities..." style="max-width: 320px;" />
+            </div>
+
+            <div class="domain-grid-container" id="domainsExplorerGrid"></div>
+          </div>
+
+          <!-- VIEW 6: USER PROFILE & TRUST VERIFICATION STATUS -->
+          <div class="tab-view-content" id="profileTab" style="display: none;">
+            <div class="feed-layout-grid">
+              <div class="post-composer-card">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                  <div class="post-avatar" style="width: 64px; height: 64px; font-size: 1.6rem;" id="profileAvatarBig">AS</div>
+                  <div>
+                    <h2 style="font-family: var(--font-display); font-size: 1.4rem;" id="profileNameBig">Aditi Sharma</h2>
+                    <div style="color: var(--saffron); font-weight: 700; font-size: 0.9rem;" id="profileRoleBig">Student Innovator • JNTU Hyderabad</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary);" id="profileGeoBig">Telangana, India • Verified Member</div>
+                  </div>
+                </div>
+
+                <div class="hero-stats-panel" style="margin-bottom: 24px;">
+                  <div class="hero-stat-card">
+                    <div class="stat-number saffron" id="profileXp">300 XP</div>
+                    <div class="stat-label">National Impact XP</div>
+                  </div>
+                  <div class="hero-stat-card">
+                    <div class="stat-number emerald" id="profileTrust">98/100</div>
+                    <div class="stat-label">Trust Score</div>
+                  </div>
+                  <div class="hero-stat-card">
+                    <div class="stat-number cyan" id="profileJoinedCount">4</div>
+                    <div class="stat-label">Guilds Active</div>
+                  </div>
+                  <div class="hero-stat-card">
+                    <div class="stat-number purple" id="profileBadgeName">Innovator</div>
+                    <div class="stat-label">Honor Badge</div>
+                  </div>
+                </div>
+
+                <h3 style="font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 12px;">
+                  🎓 Verified Specialization Tracks
+                </h3>
+                <div class="subdomain-chips" id="profileSkillsChips">
+                  <span class="sub-chip">AI/ML Engineering</span>
+                  <span class="sub-chip">State App Development</span>
+                  <span class="sub-chip">Flutter & Python</span>
+                  <span class="sub-chip">Civic Data Analytics</span>
+                </div>
+              </div>
+
+              <div class="post-composer-card">
+                <h3 style="font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 12px;">
+                  🛡️ Verification Proof & Eligibility Details
+                </h3>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                  <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                    <span>Official ID / Roll No Proof</span>
+                    <span style="color: var(--emerald); font-weight: 700;" id="proofRollNoText">✓ Verified (JNTUH-2026-CS)</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                    <span>Email Verification</span>
+                    <span style="color: var(--emerald); font-weight: 700;">✓ Verified</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                    <span>Phone / OTP Verification</span>
+                    <span style="color: var(--emerald); font-weight: 700;">✓ Verified</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                    <span>Custom Home Feed Filter</span>
+                    <span style="color: var(--saffron); font-weight: 700;">Active (Filtered to Profession)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEW 7: VERIFIED PEERS DIRECTORY -->
+          <div class="tab-view-content" id="membersTab" style="display: none;">
+            <div class="section-title-wrap">
+              <div>
+                <h2 class="section-heading-main">🧑‍🤝‍🧑 Verified Peers Directory</h2>
+                <p class="section-subtext">Connect with verified professionals and student peers in your sector</p>
+              </div>
+              <input type="text" id="memberSearchInput" class="form-control" placeholder="Search peers by name or city..." style="max-width: 320px;" />
+            </div>
+
+            <div class="domain-grid-container" id="membersListContainer">
+              <!-- Populated via JS renderMembersList() -->
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- AI Bharat Multilingual Assistant Floating Widget -->
+      <div class="ai-assistant-modal">
+        <button class="ai-fab-btn" id="aiFabBtn" title="Ask Bharat AI Assistant">✨</button>
+        <div class="ai-chat-window" id="aiChatWindow">
+          <div class="ai-chat-header">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.2rem;">✨</span>
+              <div>
+                <div style="font-weight: 700; font-size: 0.9rem;">Bharat AI Assistant</div>
+                <div style="font-size: 0.7rem; color: var(--emerald);">Multilingual • 28 States & UTs</div>
+              </div>
+            </div>
+            <button id="closeAiChatBtn" class="icon-btn" style="width: 26px; height: 26px; font-size: 0.8rem;">✕</button>
+          </div>
+
+          <div class="ai-msg-stream" id="aiMsgStream">
+            <div class="ai-bubble">
+              Namaste! I am your <strong>Bharat Community AI</strong>. Ask me how to join research projects, find nearby professional meetings, report civic issues, or understand verification!
+            </div>
+          </div>
+
+          <div class="chat-composer-box">
+            <input type="text" id="aiChatInput" class="chat-text-input" placeholder="Ask in English, Telugu, Hindi, Tamil..." />
+            <button id="sendAiChatBtn" class="btn-primary" style="padding: 8px 14px; font-size: 0.8rem;">Ask</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROLE VERIFICATION & ELIGIBILITY ONBOARDING MODAL -->
+      <div class="modal-backdrop" id="onboardingModal" style="display: none;">
+        <div class="modal-dialog-card">
+          <!-- Modal Tab Toggle: Login vs Sign Up -->
+          <div style="display: flex; background: var(--bg-surface-elevated); padding: 4px; border-radius: var(--radius-sm); margin-bottom: 20px; gap: 4px;">
+            <button id="modalTabVerify" class="btn-primary" style="flex: 1; justify-content: center; font-size: 0.85rem;">🛡️ Verify New Account</button>
+            <button id="modalTabLogin" class="btn-secondary" style="flex: 1; justify-content: center; font-size: 0.85rem;">🔑 Sign In / Login</button>
+          </div>
+
+          <!-- LOGIN MODE BODY -->
+          <div id="loginFormBody" style="display: none;">
+            <h2 style="font-family: var(--font-display); margin-bottom: 8px;">🔑 Sign In to Your Verified Account</h2>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 20px;">
+              Enter your registered email and official verification ID / password to access your custom profession dashboard.
+            </p>
+            <div class="form-group">
+              <label class="form-label">Registered Email Address</label>
+              <input type="email" id="loginEmailInput" class="form-control" placeholder="name@domain.com" value="aditi.sharma@jntuh.ac.in" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Official Verification ID / Roll No / Password</label>
+              <input type="password" id="loginPasswordInput" class="form-control" placeholder="Enter your Roll No or password" value="JNTUH-2026-CS-408" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Select Your Profession</label>
+              <select id="loginRoleSelect" class="form-control">
+                <option value="student" selected>🎓 Student Innovator</option>
+                <option value="tech">💻 Cyber / Software Lead</option>
+                <option value="police">🛡️ Police / Governance Officer</option>
+                <option value="lawyer">⚖️ High Court Advocate</option>
+                <option value="builder">🏗️ Master Architect & Builder</option>
+                <option value="media">📢 Media & PR Producer</option>
+                <option value="gamer">🎮 Esports Champion</option>
+              </select>
+            </div>
+            <button id="submitLoginBtn" class="btn-primary" style="width: 100%; justify-content: center; padding: 12px; margin-top: 10px; font-size: 0.95rem;">
+              🔑 Sign In & Unlock Dashboard →
+            </button>
+          </div>
+
+          <!-- VERIFICATION WIZARD MODE BODY -->
+          <div id="verifyFormBody">
+            <div class="step-indicator-bar">
+              <div class="step-item active" id="stepIndicator1">
+                <div class="step-circle">1</div>
+                <span>Profession</span>
+              </div>
+              <div class="step-item" id="stepIndicator2">
+                <div class="step-circle">2</div>
+                <span>Proof & ID</span>
+              </div>
+              <div class="step-item" id="stepIndicator3">
+                <div class="step-circle">3</div>
+                <span>Location</span>
+              </div>
+              <div class="step-item" id="stepIndicator4">
+                <div class="step-circle">4</div>
+                <span>Unlock Hub</span>
+              </div>
+            </div>
+
+            <h2 style="font-family: var(--font-display); margin-bottom: 8px;" id="modalStepTitle">Step 1: Select Your Profession / Guild</h2>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 20px;" id="modalStepDesc">
+              Verification unlocks your tailored home feed so you connect strictly with peers in your field.
+            </p>
+
+            <!-- Step 1: Profession Selection -->
+            <div class="wizard-step-body" id="wizardStep1">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" id="wizardName" class="form-control" placeholder="e.g. Aditi Sharma" value="Aditi Sharma" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" id="wizardEmail" class="form-control" placeholder="name@domain.com" value="aditi.sharma@jntuh.ac.in" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Select Your Profession / Eligibility Guild</label>
+                <select id="wizardRole" class="form-control">
+                  <option value="student" selected>🎓 Student (College Roll No Required)</option>
+                  <option value="teacher">👨‍🏫 Teacher / Professor / Academic Leader</option>
+                  <option value="tech">💻 IT / Software / Cyber Professional (Employee ID)</option>
+                  <option value="police">🛡️ Police Officer (Badge / Station ID)</option>
+                  <option value="govt">🏛️ Civil Servant / Govt Official / HAS</option>
+                  <option value="lawyer">⚖️ Lawyer / High Court Advocate (Bar Council Reg No)</option>
+                  <option value="builder">🏗️ Contractor / Architect / Designer (COA License)</option>
+                  <option value="media">📢 PR / Media / Content Creator / Reporter</option>
+                  <option value="gamer">🎮 Esports Gamer / Game Developer</option>
+                  <option value="citizen">🇮🇳 Citizen / Local Entrepreneur</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Step 2: Verification Proof Details -->
+            <div class="wizard-step-body" id="wizardStep2" style="display: none;">
+              <div class="form-group">
+                <label class="form-label" id="proofLabelText">College Roll No / Student ID Number</label>
+                <input type="text" id="wizardProofId" class="form-control" placeholder="e.g. JNTUH-2026-CS-408" value="JNTUH-2026-CS-408" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Institution / Organization Name</label>
+                <input type="text" id="wizardOrg" class="form-control" placeholder="e.g. JNTU College of Engineering Hyderabad" value="JNTU College of Engineering Hyderabad" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Upload Proof Document (ID Card / License / Certificate)</label>
+                <input type="file" id="wizardDocInput" class="form-control" accept=".pdf,.jpg,.png" />
+              </div>
+            </div>
+
+            <!-- Step 3: Location Details -->
+            <div class="wizard-step-body" id="wizardStep3" style="display: none;">
+              <div class="form-group">
+                <label class="form-label">Select Your State / UT</label>
+                <select id="wizardState" class="form-control">
+                  <option value="tg" selected>Telangana (Hyderabad, Warangal, Nizamabad)</option>
+                  <option value="ap">Andhra Pradesh (Vizag, Vijayawada, Amaravati)</option>
+                  <option value="ka">Karnataka (Bengaluru, Mysuru, Hubballi)</option>
+                  <option value="mh">Maharashtra (Mumbai, Pune, Nagpur)</option>
+                  <option value="tn">Tamil Nadu (Chennai, Coimbatore, Madurai)</option>
+                  <option value="dl">Delhi NCR (New Delhi, Noida, Gurugram)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">City / District / Ward Location (For Nearby Radar)</label>
+                <input type="text" id="wizardCity" class="form-control" placeholder="e.g. Kukatpally, Hyderabad" value="Kukatpally, Hyderabad" />
+              </div>
+            </div>
+
+            <!-- Step 4: Verification Success -->
+            <div class="wizard-step-body" id="wizardStep4" style="display: none;">
+              <div style="text-align: center; padding: 20px 0;">
+                <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
+                <h3 style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 8px;">ID Verified & Custom Hub Unlocked!</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); max-width: 480px; margin: 0 auto 16px;">
+                  Your home feed is now customized to show <strong>ONLY updates, sub-communities, research requests, and nearby meetings</strong> matching your verified profession!
+                </p>
+                <div class="subdomain-chips" style="justify-content: center;">
+                  <span class="sub-chip" style="border-color: var(--emerald); color: var(--emerald);">✓ Verified Professional ID</span>
+                  <span class="sub-chip" style="border-color: var(--saffron); color: var(--saffron);">✓ Filtered Home Feed Active</span>
+                  <span class="sub-chip" style="border-color: var(--cyan); color: var(--cyan);">✓ Research Collaboration Unlocked</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-actions-footer">
+            <button id="wizardBackBtn" class="btn-secondary" style="display: none;">Back</button>
+            <button id="wizardCloseBtn" class="btn-secondary">Cancel</button>
+            <button id="wizardNextBtn" class="btn-primary">Verify & Next →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CREATE RESEARCH / PROJECT IDEA MODAL -->
+      <div class="modal-backdrop" id="createProjectModal" style="display: none;">
+        <div class="modal-dialog-card" style="max-width: 580px;">
+          <h2 style="font-family: var(--font-display); margin-bottom: 8px;">🤝 Post a Research or Project Idea Request</h2>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 20px;">
+            Share your work, invite peer collaborators, or request team members for state problem solving.
           </p>
-          <div class="hero-actions">
-            <button id="exploreBtn">Explore State Communities</button>
-            <button id="createBtn" class="secondary">Create a State Campaign</button>
+
+          <div class="form-group">
+            <label class="form-label">Project / Research Title</label>
+            <input type="text" id="projectTitleInput" class="form-control" placeholder="e.g. AI Salinity Sensor Mesh for Coastal Aquaculture" />
           </div>
-          <div class="state-selector">
-            <label for="stateSelect">Choose state</label>
-            <select id="stateSelect">
-              <option value="ap">Andhra Pradesh</option>
-              <option value="tg">Telangana</option>
+          <div class="form-group">
+            <label class="form-label">Pillar & Profession Category</label>
+            <select id="projectPillarSelect" class="form-control">
+              <option value="education">🎓 Students & Education</option>
+              <option value="tech">💻 Software & Cyber Tech</option>
+              <option value="police">🛡️ Police & Civil Safety</option>
+              <option value="legal">⚖️ Legal & Fast-Track Courts</option>
+              <option value="builders">🏗️ Builders & Smart Architecture</option>
+              <option value="media">📢 Media & Swachh Bharat</option>
             </select>
           </div>
-        </div>
+          <div class="form-group">
+            <label class="form-label">Project Description & Objectives</label>
+            <textarea id="projectDescInput" class="composer-input" placeholder="Explain the problem being solved, current research progress, and goals..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Roles & Skills Needed from Peers</label>
+            <input type="text" id="projectRolesInput" class="form-control" placeholder="e.g. 2 Python Data Engineers, 1 Legal Researcher" />
+          </div>
 
-        <div class="hero-card">
-          <h3>State focus</h3>
-          <p id="focusTag">Clean City + Education Growth</p>
-          <ul>
-            <li>Community-led awareness</li>
-            <li>Local events and volunteering</li>
-            <li>State-level collaboration</li>
-          </ul>
+          <div class="modal-actions-footer">
+            <button id="closeProjectModalBtn" class="btn-secondary">Cancel</button>
+            <button id="submitProjectModalBtn" class="btn-primary">Publish Project Request</button>
+          </div>
         </div>
       </div>
-    </header>
 
-    <div id="authModal" class="modal hidden">
-      <div class="modal-card">
-        <div class="wizard-steps">
-          <span id="stepBadge">Login</span>
-        </div>
-        <h3 id="authTitle">Login</h3>
-        <form id="authForm">
-          <div class="wizard-step" id="authStep1">
-            <input id="authName" type="text" placeholder="Full name" />
-            <input id="authEmail" type="email" placeholder="Email" required />
-            <input id="authPassword" type="password" placeholder="Password" required />
-            <select id="authRole">
-              <option value="student">Student</option>
-              <option value="teacher">Teacher</option>
-              <option value="it_employee">IT Employee</option>
-              <option value="police">Police Officer</option>
-              <option value="govt_employee">Government Employee</option>
-              <option value="lawyer">Lawyer</option>
-              <option value="doctor">Doctor</option>
-              <option value="media">PR / News / Creator</option>
-            </select>
-            <label for="communityDomainSelect">Choose your main domain</label>
-            <select id="communityDomainSelect" required>
-              <option value="">Select a main domain</option>
-              <option value="Technology & IT">Technology & IT</option>
-              <option value="Students & Education">Students & Education</option>
-              <option value="Agriculture">Agriculture</option>
-              <option value="Jobs & Careers">Jobs & Careers</option>
-              <option value="Business">Business</option>
-              <option value="Startups">Startups</option>
-              <option value="Finance">Finance</option>
-              <option value="Health">Health</option>
-              <option value="Fitness">Fitness</option>
-              <option value="Gaming">Gaming</option>
-              <option value="Arts & Design">Arts & Design</option>
-              <option value="Music">Music</option>
-              <option value="Entertainment">Entertainment</option>
-              <option value="Sports">Sports</option>
-              <option value="Travel">Travel</option>
-              <option value="Food">Food</option>
-              <option value="Real Estate">Real Estate</option>
-              <option value="Pets">Pets</option>
-              <option value="Environment">Environment</option>
-              <option value="NGOs & Social Impact">NGOs & Social Impact</option>
-              <option value="Family & Parenting">Family & Parenting</option>
-              <option value="Relationships">Relationships</option>
-              <option value="Spirituality">Spirituality</option>
-              <option value="Automobiles">Automobiles</option>
-              <option value="Local Communities">Local Communities</option>
-            </select>
-            <input id="subdomainInput" type="text" placeholder="Subdomain interest (for example AI, Agriculture, Jobs, Health)" />
-          </div>
-
-          <div class="wizard-step hidden" id="authStep2">
-            <input id="authMobile" type="tel" placeholder="Mobile number" />
-            <button type="button" id="verifyEmailBtn" class="secondary-btn">Verify Email</button>
-            <input id="authOtp" type="text" placeholder="Enter OTP" />
-            <button type="button" id="verifyMobileBtn" class="secondary-btn">Verify Mobile</button>
-          </div>
-
-          <div class="wizard-step hidden" id="authStep3">
-            <div class="form-grid">
-              <select id="professionSelect">
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-                <option value="doctor">Doctor</option>
-                <option value="lawyer">Lawyer</option>
-                <option value="police">Police</option>
-                <option value="govt_employee">Government Employee</option>
-                <option value="media">Media / Creator</option>
-              </select>
-              <select id="branchSelect">
-                <option value="cse">CSE</option>
-                <option value="ece">ECE</option>
-                <option value="eee">EEE</option>
-                <option value="civil">Civil</option>
-                <option value="mechanical">Mechanical</option>
-                <option value="law">Law</option>
-                <option value="medical">Medical</option>
-                <option value="general">General / Other</option>
-              </select>
-              <select id="domainSelect">
-                <option value="">Preferred community domain</option>
-                <option value="Technology & IT">Technology & IT</option>
-                <option value="Students & Education">Students & Education</option>
-                <option value="Agriculture">Agriculture</option>
-                <option value="Jobs & Careers">Jobs & Careers</option>
-                <option value="Business">Business</option>
-                <option value="Startups">Startups</option>
-                <option value="Finance">Finance</option>
-                <option value="Health">Health</option>
-                <option value="Fitness">Fitness</option>
-                <option value="Gaming">Gaming</option>
-                <option value="Arts & Design">Arts & Design</option>
-                <option value="Music">Music</option>
-                <option value="Entertainment">Entertainment</option>
-                <option value="Sports">Sports</option>
-                <option value="Travel">Travel</option>
-                <option value="Food">Food</option>
-                <option value="Real Estate">Real Estate</option>
-                <option value="Pets">Pets</option>
-                <option value="Environment">Environment</option>
-                <option value="NGOs & Social Impact">NGOs & Social Impact</option>
-                <option value="Family & Parenting">Family & Parenting</option>
-                <option value="Relationships">Relationships</option>
-                <option value="Spirituality">Spirituality</option>
-                <option value="Automobiles">Automobiles</option>
-                <option value="Local Communities">Local Communities</option>
-              </select>
-              <input id="rollNoInput" type="text" placeholder="Roll number / Employee ID" />
-              <input id="specialtyInput" type="text" placeholder="Specialty or branch detail" />
-              <input id="verificationIdInput" type="text" placeholder="Verification ID / Role ID" />
-            </div>
-          </div>
-
-          <div class="wizard-step hidden" id="authStep4">
-            <input id="addressInput" type="text" placeholder="Address" />
-            <div class="form-grid">
-              <input id="cityInput" type="text" placeholder="City" />
-              <input id="stateInput" type="text" placeholder="State" />
-            </div>
-            <input id="authDocInput" type="file" accept=".pdf,.jpg,.jpeg,.png" />
-            <textarea id="profileNote" rows="3" placeholder="Add a short note about your role, proof, and community interest"></textarea>
-          </div>
-
-          <div class="wizard-actions">
-            <button type="button" id="prevStepBtn" class="secondary-btn hidden">Back</button>
-            <button type="button" id="nextStepBtn">Next</button>
-          </div>
-        </form>
-        <p id="authSwitchText" class="helper-text">New here? <button id="toggleAuthMode" class="link-btn">Create account</button></p>
-        <button id="closeModal" class="link-btn">Cancel</button>
-      </div>
+      <!-- Mobile Navigation Dock -->
+      <nav class="mobile-nav-dock">
+        <button class="mobile-dock-btn active" data-tab="feedTab">
+          <span>🌐</span> Feed
+        </button>
+        <button class="mobile-dock-btn" data-tab="projectsTab">
+          <span>🤝</span> Research
+        </button>
+        <button class="mobile-dock-btn" data-tab="workspaceTab">
+          <span>💬</span> Chat
+        </button>
+        <button class="mobile-dock-btn" data-tab="radarTab">
+          <span>📍</span> Radar
+        </button>
+        <button class="mobile-dock-btn" data-tab="profileTab">
+          <span>👤</span> Profile
+        </button>
+      </nav>
     </div>
-
-    <main>
-      <section class="auth-panel">
-        <div class="auth-card">
-          <h2>Join the state network</h2>
-          <p>Start with ready-made communities built for education, technology, public service, media, and local action.</p>
-          <div class="auth-actions">
-            <button id="loginBtn">Login</button>
-            <button id="signupBtn" class="secondary">Sign Up</button>
-          </div>
-        </div>
-
-        <div class="auth-card">
-          <h3>Community categories ready for you</h3>
-          <ul class="feature-list">
-            <li>Students and teachers</li>
-            <li>IT employees and tech professionals</li>
-            <li>Police, lawyers, collectors, and government servants</li>
-            <li>PR, news reporters, TV channels, and creators</li>
-            <li>Nearby-area local communities</li>
-          </ul>
-        </div>
-
-        <div class="auth-card">
-          <h3>API access</h3>
-          <p>Connect the app to a backend endpoint using a demo API key.</p>
-          <input id="apiKeyInput" type="password" placeholder="API key" />
-          <button id="saveApiKeyBtn" class="secondary">Save key</button>
-          <p id="apiStatusText" class="helper-text">Waiting for backend connection…</p>
-        </div>
-      </section>
-
-      <section class="section" id="profileSection">
-        <div class="section-heading">
-          <h2>My profile</h2>
-          <p>Your verified identity, recommended communities, and premium access.</p>
-        </div>
-        <div class="profile-card" id="profileSummary"></div>
-      </section>
-
-      <section class="section" id="communityHubSection" style="display: none;">
-        <div class="section-heading">
-          <h2>Your verified community hub</h2>
-          <p>Communities arranged around your branch, profession, location, and verification details.</p>
-        </div>
-        <div id="communityHubList" class="card-grid"></div>
-      </section>
-
-      <section class="stats" id="impact">
-        <div class="stat-card">
-          <h3 id="communityCount">0</h3>
-          <p>Active communities</p>
-        </div>
-        <div class="stat-card">
-          <h3 id="eventCount">0</h3>
-          <p>Events this week</p>
-        </div>
-        <div class="stat-card">
-          <h3 id="actionCount">0</h3>
-          <p>Local actions planned</p>
-        </div>
-      </section>
-
-      <section class="section" id="analyticsSection">
-        <div class="section-heading">
-          <h2>Your community progress</h2>
-          <p>A simple view of your requests, community activity, and premium access.</p>
-        </div>
-        <div class="stats">
-          <div class="stat-card">
-            <h3 id="verifiedCount">0</h3>
-            <p>Verified requests</p>
-          </div>
-          <div class="stat-card">
-            <h3 id="pendingCount">0</h3>
-            <p>Pending checks</p>
-          </div>
-          <div class="stat-card">
-            <h3 id="premiumCount">0</h3>
-            <p>Premium access</p>
-          </div>
-        </div>
-        <div class="card-grid">
-          <article class="card">
-            <h3>Your recent requests</h3>
-            <ul id="reviewQueue"></ul>
-          </article>
-          <article class="card">
-            <h3>Community updates</h3>
-            <ul id="activityFeed"></ul>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="communityDetailSection" style="display: none;">
-        <div class="auth-card">
-          <h3 id="detailTitle">Community overview</h3>
-          <p id="detailDescription"></p>
-          <ul id="detailHighlights"></ul>
-          <button id="detailJoinBtn" class="join-btn">Join This Community</button>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <h2>Platform ecosystem map</h2>
-          <p>Every community is linked through a main domain, subdomain, category, and channel structure.</p>
-        </div>
-        <div id="domainExplorerList" class="domain-grid"></div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <h2>Core platform modules</h2>
-          <p>The ecosystem combines identity, networking, communication, learning, marketplace, events, AI, trust, and administration.</p>
-        </div>
-        <div id="platformModulesList" class="module-grid"></div>
-      </section>
-
-      <section class="section" id="communities">
-        <div class="section-heading">
-          <h2 id="communityHeading">Communities in Karnataka</h2>
-          <p id="stateTagline">Local networks for progress and collaboration.</p>
-        </div>
-        <div id="communityList" class="card-grid"></div>
-      </section>
-      <section class="section" id="verificationSection" style="display: none;">
-        <div class="auth-card">
-          <h3 id="verificationTitle">Community verification</h3>
-          <p id="verificationText">Please upload proof for your role before joining this community.</p>
-          <form id="verificationForm">
-            <label for="roleSelect">Select your role</label>
-            <select id="roleSelect">
-              <option value="student">Student</option>
-              <option value="teacher">Teacher</option>
-              <option value="it_employee">IT Employee</option>
-              <option value="police">Police Officer</option>
-              <option value="govt_employee">Government Employee</option>
-              <option value="lawyer">Lawyer</option>
-              <option value="media">PR / News / Creator</option>
-            </select>
-            <label for="proofInput">Upload proof document</label>
-            <input type="file" id="proofInput" accept=".pdf,.jpg,.jpeg,.png" />
-            <textarea id="proofNote" rows="3" placeholder="Add a short note about your role and proof"></textarea>
-            <button type="submit">Submit Verification</button>
-          </form>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <h2>Verified member dashboard</h2>
-          <p>Membership status after verification review.</p>
-        </div>
-        <div id="dashboardList" class="card-grid"></div>
-      </section>
-
-      <section class="section" id="premiumWorkspaceSection" style="display: none;">
-        <div class="section-heading">
-          <h2>Premium workspace</h2>
-          <p>Your verified collaboration rooms, private updates, and project channels.</p>
-        </div>
-        <div class="card-grid">
-          <article class="card">
-            <h3>Private project room</h3>
-            <p>Share updates, planning files, and verified professional notes for your state campaign.</p>
-          </article>
-          <article class="card">
-            <h3>Verified professional channel</h3>
-            <p>Connect with lawyers, doctors, teachers, and civic leaders in a trusted premium circle.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <h2>Premium subscriptions</h2>
-          <p>Unlock private project rooms and professional collaboration tools.</p>
-        </div>
-        <div class="card-grid">
-          <article class="card">
-            <span class="tag">Starter</span>
-            <h3>Community Access</h3>
-            <p>Free access to public communities, events, and state-wide updates.</p>
-            <p><strong>₹0 / month</strong></p>
-          </article>
-          <article class="card">
-            <span class="tag">Premium</span>
-            <h3>Private Project Rooms</h3>
-            <p>Join paid private chat rooms for designers, event managers, tech teams, and project collaborators.</p>
-            <p><strong>₹499 / month</strong></p>
-            <button class="join-btn" id="premiumBtn">Upgrade to Premium</button>
-          </article>
-          <article class="card">
-            <span class="tag">Pro</span>
-            <h3>Professional Network</h3>
-            <p>Get priority access to verified professionals, exclusive campaigns, and expert rooms.</p>
-            <p><strong>₹999 / month</strong></p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <h2>Premium chat rooms</h2>
-          <p>Private rooms for focused collaboration.</p>
-        </div>
-        <div class="chat-room-card">
-          <div class="chat-room-list">
-            <div class="chat-room-item active">Design Collaboration Room</div>
-            <div class="chat-room-item">Event Managers Hub</div>
-            <div class="chat-room-item">Tech Project Circle</div>
-          </div>
-          <div class="chat-room-messages">
-            <div class="message incoming">Hello! We are planning a city awareness event this weekend.</div>
-            <div class="message outgoing">Great. I can help with content and volunteer coordination.</div>
-            <div class="message incoming">Perfect. Premium members can share files and plan faster.</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <h2>Upgrade to premium</h2>
-          <p>Bring premium collaboration to your city and state growth journey.</p>
-        </div>
-        <div class="checkout-card">
-          <h3>Premium Plan</h3>
-          <p>₹499 / month</p>
-          <ul>
-            <li>Private project rooms</li>
-            <li>Verified professional access</li>
-            <li>Exclusive campaigns and state-level events</li>
-          </ul>
-          <button class="join-btn" id="checkoutBtn">Pay Now</button>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <h2>Why this app can grow</h2>
-          <p>A platform that starts with communities and grows into a nationwide movement.</p>
-        </div>
-        <div class="card-grid">
-          <article class="card">
-            <h3>State-first growth</h3>
-            <p>Build trust in one state before expanding to others.</p>
-          </article>
-          <article class="card">
-            <h3>Professional value</h3>
-            <p>Offer premium rooms for real collaboration and business use.</p>
-          </article>
-          <article class="card">
-            <h3>National impact</h3>
-            <p>Create one connected ecosystem for awareness, civic action, and development.</p>
-          </article>
-        </div>
-      </section>
-      <section class="section" id="campaigns">
-        <div class="section-heading">
-          <h2>State campaigns</h2>
-          <p>Focused programs that can grow into national awareness movements.</p>
-        </div>
-        <div id="campaignList" class="card-grid"></div>
-      </section>
-
-      <section class="section" id="events">
-        <div class="section-heading">
-          <h2>Upcoming state events</h2>
-          <p>Join local drives, community meetups, and learning circles.</p>
-        </div>
-        <div id="eventList" class="card-grid"></div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <h2>Why this grows well</h2>
-          <p>Built to expand from one state into a national movement.</p>
-        </div>
-        <div id="storyList" class="story-grid"></div>
-      </section>
-    </main>
 
     <script src="app.js"></script>
   </body>
